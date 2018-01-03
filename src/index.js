@@ -1,5 +1,5 @@
 import React from 'react';
-import createSagaMiddleware from 'redux-saga';
+import { createEpicMiddleware } from 'redux-observable'
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { render } from 'react-dom';
@@ -7,20 +7,18 @@ import { Provider } from 'react-redux';
 import { IntlProvider } from 'react-intl';
 
 import rootReducer from './reducer.root';
-import rootSaga from './saga.root';
+import rootEpic from './epic.root';
 import App from './components/App';
 
 // store initial state
 const initialState = {};
-const sagaMiddleware = createSagaMiddleware();
+const epicMiddleware = createEpicMiddleware(rootEpic);
 
-export const store = createStore(
+const store = createStore(
   rootReducer,
   initialState,
-  composeWithDevTools(applyMiddleware(sagaMiddleware))
+  composeWithDevTools(applyMiddleware(epicMiddleware))
 );
-
-sagaMiddleware.run(rootSaga);
 
 render(
   <Provider store={store}>
