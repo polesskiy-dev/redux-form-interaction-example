@@ -11,6 +11,7 @@ const ValidatedInput = ({
     {...restProps}
   >
     <Input
+      size="large"
       type={type}
       {...input}
     />

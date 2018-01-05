@@ -4,13 +4,14 @@ import Button from 'antd/lib/button';
 import { Field, reduxForm } from 'redux-form';
 import { FormattedMessage } from 'react-intl';
 
-import ValidatedInput from '../form-elements/ValidatedInput/ValidatedInput';
+import './SignUpForm.less';
+
+import EInput from '../form-elements/EInput/EInput';
 import initialValues from './sign-up-form.initial';
 import messages from './sign-up-form.messages';
 import signUpFormName, * as fieldNames from './sign-up-form.names';
 import { required, email, samePassword } from '../../validation';
-
-console.log(messages);
+import EUpload from '../form-elements/EUpload/EUpload';
 
 @reduxForm({
   form: signUpFormName,
@@ -19,19 +20,26 @@ console.log(messages);
 export default class SignUpForm extends PureComponent {
   render() {
     return (
-      <form>
-        <Field
-          name={fieldNames.EMAIL}
-          component={ValidatedInput}
-          props={{
-            type: 'text',
-            label: messages.labelEmail
-          }}
-          validate={[required, email]}
-        />
+      <form className="sign-up-form__wrapper">
+        <div className="row">
+          <div className="half-size">
+            <Field
+              name={fieldNames.EMAIL}
+              component={EInput}
+              props={{
+                type: 'text',
+                label: messages.labelEmail
+              }}
+              validate={[required, email]}
+            />
+          </div>
+          <div className="half-size" >
+            <EUpload />
+          </div>
+        </div>
         <Field
           name={fieldNames.PASSWORD}
-          component={ValidatedInput}
+          component={EInput}
           props={{
             type: 'password',
             label: messages.labelPassword
@@ -40,20 +48,23 @@ export default class SignUpForm extends PureComponent {
         />
         <Field
           name={fieldNames.CONFIRM_PASSWORD}
-          component={ValidatedInput}
+          component={EInput}
           props={{
             type: 'password',
             label: messages.labelConfirmPassword
           }}
           validate={[required, samePassword]}
         />
-        <Button
-          type="primary"
-          loading
-        >
+        <footer className="sign-up-form__footer">
+          <Button
+            type="primary"
+            size="large"
+            // loading
+          >
           Submit
-          {/* <FormattedMessage {...messages.submit} /> */}
-        </Button>
+            {/* <FormattedMessage {...messages.submit} /> */}
+          </Button>
+        </footer>
       </form>
     );
   }

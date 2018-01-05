@@ -1,9 +1,9 @@
 import React from 'react';
 
-import styles from './PageHeader.less';
+import './PageHeader.less';
 
 const PageHeader = () => (
-  <header>
+  <header className="page-header__wrapper">
         Here we will choose language
   </header>
 );

@@ -6,7 +6,7 @@ import PageHeader from './PageHeader/PageHeader';
 import SignUpPage from './SignUpPage/SignUpPage';
 
 const App = props => (
-  <section className="main">
+  <section className="app__wrapper">
     <PageHeader />
     <SignUpPage />
   </section>

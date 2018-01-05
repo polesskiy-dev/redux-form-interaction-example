@@ -1,11 +1,13 @@
+@import '../../variables';
+
 .validated-form-field {
  .validated-form-field__label {
    height: 16px;
  }
 
   .validated-form-field__error-message {
-    height: 16px;
-    color: #f44336;
+    height: 24px;
+    color: @error-message-color;
     visibility: hidden;
 
     &_visible {
