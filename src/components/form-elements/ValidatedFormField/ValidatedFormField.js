@@ -4,21 +4,24 @@ import { cond } from 'lodash/fp';
 import classNames from 'classnames';
 import { FormattedMessage } from 'react-intl';
 
+import './ValidationFormField.less';
+
 import { shouldDisplayError, shouldDisplayErrorMessage } from '../../../helpers';
 
 const ValidatedFormField = ({
   name, label, meta, children
 }) => (
-  <div className={classNames({ 'has-error': shouldDisplayError({ ...meta }) })}>
-    <label htmlFor={name}>
+  <div className={classNames('validated-form-field', { 'has-error': shouldDisplayError({ ...meta }) })}>
+    <label
+      htmlFor={name}
+      className="validated-form-field__label"
+    >
       {label}
     </label>
     {children}
-    {shouldDisplayErrorMessage({ ...meta }) && (
-      <span>
-        {meta.error}
-      </span>
-    )}
+    <span className={classNames('validated-form-field__error-message', { 'validated-form-field__error-message_visible': shouldDisplayErrorMessage({ ...meta }) })}>
+      {meta.error}
+    </span>
   </div>
 );
 

@@ -10,6 +10,8 @@ import messages from './sign-up-form.messages';
 import signUpFormName, * as fieldNames from './sign-up-form.names';
 import { required, email, samePassword } from '../../validation';
 
+console.log(messages);
+
 @reduxForm({
   form: signUpFormName,
   initialValues
@@ -49,7 +51,8 @@ export default class SignUpForm extends PureComponent {
           type="primary"
           loading
         >
-              Submit
+          Submit
+          {/* <FormattedMessage {...messages.submit} /> */}
         </Button>
       </form>
     );
