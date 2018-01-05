@@ -1,4 +1,5 @@
 import React from 'react';
+import PropType from 'prop-types';
 import Input from 'antd/lib/input';
 
 import ValidatedFormField from '../ValidatedFormField/ValidatedFormField';
@@ -18,6 +19,17 @@ const ValidatedInput = ({
   </ValidatedFormField>
 );
 
-// TODO prop types
+ValidatedFormField.propTypes = {
+  name: PropType.string,
+  input: PropType.shape({
+    name: PropType.string,
+    onChange: PropType.func
+  }).isRequired,
+  type: PropType.string,
+};
+
+ValidatedFormField.defaultProps = {
+  type: 'text',
+};
 
 export default ValidatedInput;

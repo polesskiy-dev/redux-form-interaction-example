@@ -7,11 +7,12 @@ import { FormattedMessage } from 'react-intl';
 import './SignUpForm.less';
 
 import EInput from '../form-elements/EInput/EInput';
+import EUpload from '../form-elements/EUpload/EUpload';
+import ECountrySelect from '../form-elements/ECountrySelect/ECountrySelect';
 import initialValues from './sign-up-form.initial';
 import messages from './sign-up-form.messages';
 import signUpFormName, * as fieldNames from './sign-up-form.names';
 import { required, email, samePassword } from '../../validation';
-import EUpload from '../form-elements/EUpload/EUpload';
 
 @reduxForm({
   form: signUpFormName,
@@ -31,6 +32,14 @@ export default class SignUpForm extends PureComponent {
                 label: messages.labelEmail
               }}
               validate={[required, email]}
+            />
+            <Field
+              name={fieldNames.COUNTRY}
+              component={ECountrySelect}
+              props={{
+                label: messages.labelCountry
+              }}
+              validate={[required]}
             />
           </div>
           <div className="half-size" >
