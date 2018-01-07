@@ -4,6 +4,7 @@ export default defineMessages({
   submit: 'Submit',
   labelEmail: 'Email',
   labelCountry: 'Country',
+  birthDate: 'Birth date',
   labelPassword: 'Password',
   labelConfirmPassword: 'Confirm password'
 });

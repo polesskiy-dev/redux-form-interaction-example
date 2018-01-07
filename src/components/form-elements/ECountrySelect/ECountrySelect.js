@@ -14,7 +14,7 @@ const ECountrySelect = ({ name, input, ...restProps }) => (
   >
     <Select
       size="large"
-      style={{display: 'block'}}
+      style={{ display: 'block' }}
       defaultValue={messages.USA}
       {...input}
     >

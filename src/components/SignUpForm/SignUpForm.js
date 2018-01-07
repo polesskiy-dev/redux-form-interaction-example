@@ -9,13 +9,13 @@ import './SignUpForm.less';
 import EInput from '../form-elements/EInput/EInput';
 import EUpload from '../form-elements/EUpload/EUpload';
 import ECountrySelect from '../form-elements/ECountrySelect/ECountrySelect';
-import initialValues from './sign-up-form.initial';
-import messages from './sign-up-form.messages';
-import signUpFormName, * as fieldNames from './sign-up-form.names';
+import EDatePicker from '../form-elements/EDatePicker/EDatePicker';
+import messages from './SignUpForm.messages';
+import { initialValues, fieldNames, SIGN_UP_FORM_NAME } from './SignUpForm.config';
 import { required, email, samePassword } from '../../validation';
 
 @reduxForm({
-  form: signUpFormName,
+  form: SIGN_UP_FORM_NAME,
   initialValues
 })
 export default class SignUpForm extends PureComponent {
@@ -23,7 +23,7 @@ export default class SignUpForm extends PureComponent {
     return (
       <form className="sign-up-form__wrapper">
         <div className="row">
-          <div className="half-size">
+          <div className="alignment-column col-sm-full col-lg-half">
             <Field
               name={fieldNames.EMAIL}
               component={EInput}
@@ -41,29 +41,38 @@ export default class SignUpForm extends PureComponent {
               }}
               validate={[required]}
             />
+            <Field
+              name={fieldNames.BIRTH_DATE}
+              component={EDatePicker}
+              props={{
+                label: messages.birthDate
+              }}
+              validate={[required]}
+            />
+            <Field
+              name={fieldNames.PASSWORD}
+              component={EInput}
+              props={{
+                type: 'password',
+                label: messages.labelPassword
+              }}
+              validate={[required]}
+            />
           </div>
-          <div className="half-size" >
+          <div className="alignment-column col-sm-full col-lg-half" >
             <EUpload />
+            <Field
+              name={fieldNames.CONFIRM_PASSWORD}
+              component={EInput}
+              props={{
+                type: 'password',
+                label: messages.labelConfirmPassword
+              }}
+              validate={[required, samePassword]}
+            />
           </div>
         </div>
-        <Field
-          name={fieldNames.PASSWORD}
-          component={EInput}
-          props={{
-            type: 'password',
-            label: messages.labelPassword
-          }}
-          validate={[required]}
-        />
-        <Field
-          name={fieldNames.CONFIRM_PASSWORD}
-          component={EInput}
-          props={{
-            type: 'password',
-            label: messages.labelConfirmPassword
-          }}
-          validate={[required, samePassword]}
-        />
+
         <footer className="sign-up-form__footer">
           <Button
             type="primary"

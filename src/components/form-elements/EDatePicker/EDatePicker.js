@@ -1,35 +1,30 @@
 import React from 'react';
 import PropType from 'prop-types';
-import Input from 'antd/lib/input';
+import DatePicker from 'antd/lib/date-picker';
 
 import ValidatedFormField from '../ValidatedFormField/ValidatedFormField';
 
-const ValidatedInput = ({
-  type, name, input, ...restProps
-}) => (
+const EDatePicker = ({ name, input, ...restProps }) => (
   <ValidatedFormField
     name={name || input.name}
     {...restProps}
   >
-    <Input
+    <DatePicker
       size="large"
-      type={type}
       {...input}
     />
   </ValidatedFormField>
 );
 
-ValidatedInput.propTypes = {
+EDatePicker.propTypes = {
   name: PropType.string,
   input: PropType.shape({
     name: PropType.string,
     onChange: PropType.func
-  }).isRequired,
-  type: PropType.string,
+  }).isRequired
 };
 
-ValidatedInput.defaultProps = {
-  type: 'text',
+EDatePicker.defaultProps = {
 };
 
-export default ValidatedInput;
+export default EDatePicker;

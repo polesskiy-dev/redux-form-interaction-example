@@ -1,6 +1,0 @@
-export const EMAIL = 'email';
-export const COUNTRY = 'country';
-export const PASSWORD = 'password';
-export const CONFIRM_PASSWORD = 'confirmPassword';
-
-export default 'signUpForm';

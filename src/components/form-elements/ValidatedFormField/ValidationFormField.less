@@ -1,9 +1,15 @@
 @import '../../variables';
 
 .validated-form-field {
- .validated-form-field__label {
-   height: 16px;
- }
+  width: @data-input-default-width;
+
+  .validated-form-field__label {
+    height: 16px;
+  }
+
+  .ant-input {
+    width: @data-input-default-width;
+  }
 
   .validated-form-field__error-message {
     height: 24px;

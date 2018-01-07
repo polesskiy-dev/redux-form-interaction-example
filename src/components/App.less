@@ -2,6 +2,9 @@
 @import '~antd/lib/input/style/index.less';
 @import '~antd/lib/upload/style/index.less';
 @import '~antd/lib/select/style/index.less';
+@import '~antd/lib/date-picker/style/index.less';
+
+@import './variables';
 
 body {
   background-color: rgb(236, 236, 236);
@@ -18,4 +21,26 @@ body {
   flex-basis: auto;
   flex-direction: row;
   flex-wrap: wrap;
+
+  .alignment-column {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .col-lg-half {
+    flex-grow: 0;
+    flex-shrink: 0;
+    flex-basis: 50%;
+    max-width: 50%;
+  }
+
+  .col-sm-full {
+    @media @mobile {
+      flex-grow: 0;
+      flex-shrink: 0;
+      flex-basis: 100%;
+      max-width: 100%;
+    }
+  }
 }
