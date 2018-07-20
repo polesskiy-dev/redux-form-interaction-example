@@ -11,10 +11,21 @@ import messages from './SignUpForm.messages';
 import { initialValues, fieldNames, SIGN_UP_FORM_NAME } from './SignUpForm.config';
 import { required, email, samePassword, has4Length } from '../../validation';
 import { signUpRequest } from '../../ducks/sign-up.duck';
+import { validateFieldRequest } from '../../ducks/asyc-field-validate.duck';
+import { shouldAsyncValidate } from '../../helpers';
+
+const asyncBlurFields = [fieldNames.EMAIL];
+const asyncValidate = (values, dispatch, props, blurredField) =>
+  new Promise((resolve, reject) => dispatch(validateFieldRequest({
+    values, blurredField, resolve, reject
+  })));
 
 @reduxForm({
   form: SIGN_UP_FORM_NAME,
-  initialValues
+  initialValues,
+  asyncValidate,
+  shouldAsyncValidate: shouldAsyncValidate(asyncBlurFields),
+  asyncBlurFields
 })
 export default class SignUpForm extends PureComponent {
 

@@ -4832,12 +4832,6 @@ body {
 }
 .row {
   box-sizing: border-box;
-  display: flex;
-  flex-grow: 0;
-  flex-shrink: 1;
-  flex-basis: auto;
-  flex-direction: row;
-  flex-wrap: wrap;
 }
 .row .alignment-column {
   display: flex;
@@ -4870,7 +4864,7 @@ body {
   color: #FFF;
 }
 .sign-up-page__wrapper {
-  max-width: 640px;
+  max-width: 480px;
   margin: 32px auto 0 auto;
 }
 .sign-up-page__header {

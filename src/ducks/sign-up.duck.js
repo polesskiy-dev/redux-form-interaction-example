@@ -18,12 +18,20 @@ export const signUpFailure = createAction(SIGN_UP_FAILURE);
 export const signUpEpic = (action$, state$) => action$.pipe(
   ofType(SIGN_UP_REQUEST),
   withLatestFrom(state$),
-  delay(2500),
+  delay(1500),
   switchMap(([, state]) =>
     from(fakeAjax('/sign-up', getFormValues(SIGN_UP_FORM_NAME)(state)))
       .pipe(
-        map(signUpSuccess),
-        catchError(error => of(signUpFailure(error.message)))
+        map((res) => {
+          console.log('%s submitted successfully with result: %o', SIGN_UP_FORM_NAME, res);
+
+          return signUpSuccess(res);
+        }),
+        catchError((error) => {
+          console.log('%s submitted with error: %o', SIGN_UP_FORM_NAME, error.message);
+
+          return of(signUpFailure(error.message));
+        })
       ))
 );
 
