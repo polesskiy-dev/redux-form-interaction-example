@@ -2,6 +2,7 @@
 
 .validated-form-field {
   width: @data-input-default-width;
+  margin: 8px 0;
 
   .validated-form-field__label {
     height: 16px;
@@ -12,7 +13,8 @@
   }
 
   .validated-form-field__error-message {
-    height: 24px;
+    display: block;
+    min-height: 24px;
     color: @error-message-color;
     visibility: hidden;
 

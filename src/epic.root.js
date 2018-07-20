@@ -1,5 +1,7 @@
 import { combineEpics } from 'redux-observable';
 
-const rootEpic = combineEpics();
+import { signUpEpic } from './ducks/sign-up.duck';
+
+const rootEpic = combineEpics(signUpEpic);
 
 export default rootEpic;

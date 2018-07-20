@@ -1,4 +1,4 @@
-import moment from 'moment';
+import countrySelectMessages from '../form-elements/ECountrySelect/ECountrySelect.messages';
 
 export const SIGN_UP_FORM_NAME = 'signUpForm';
 
@@ -11,5 +11,5 @@ export const fieldNames = {
 };
 
 export const initialValues = {
-  [fieldNames.BIRTH_DATE]: null,
+  [fieldNames.COUNTRY]: countrySelectMessages.Other,
 };

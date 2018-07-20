@@ -1,5 +1,7 @@
+import 'rxjs';
+
 import React from 'react';
-import { createEpicMiddleware } from 'redux-observable'
+import { createEpicMiddleware } from 'redux-observable';
 import { applyMiddleware, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { render } from 'react-dom';
@@ -12,13 +14,15 @@ import App from './components/App';
 
 // store initial state
 const initialState = {};
-const epicMiddleware = createEpicMiddleware(rootEpic);
+const epicMiddleware = createEpicMiddleware();
 
 const store = createStore(
   rootReducer,
   initialState,
   composeWithDevTools(applyMiddleware(epicMiddleware))
 );
+
+epicMiddleware.run(rootEpic);
 
 render(
   <Provider store={store}>

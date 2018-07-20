@@ -1,5 +1,5 @@
 import { isEmail } from 'validator';
-import { cond, eq, flow, trim, isEmpty, constant, stubTrue, noop } from 'lodash/fp';
+import { cond, eq, flow, trim, isEmpty, constant, stubTrue, noop, size } from 'lodash/fp';
 
 import messages from './validation.messages';
 
@@ -8,8 +8,13 @@ export const required = flow(trim, cond([
   [stubTrue, noop]
 ]));
 
+export const has4Length = cond([
+  [flow(size, eq(4)), noop],
+  [stubTrue, constant(messages.shouldHave4Length)]
+]);
+
 export const email = cond([
-  [isEmail, noop],
+  [v => isEmail(v), noop],
   [stubTrue, constant(messages.enterValidEmail)]
 ]);
 

@@ -1,14 +1,23 @@
 @import '../variables';
 
-.sign-up__header {
-  background-color: @header-background-color;
-  color: @header-text-color;
-
-  height: 56px;
-  width: 100%;
-  margin-top: 32px;
+.sign-up-page__wrapper{
+  max-width: 480px;
+  margin: 32px auto 0 auto;
 }
 
-.sign-up__main {
+.sign-up-page__header {
+  width: 100%;
+  height: 56px;
+  padding: 0 16px;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+
+  font-size: @header-font-size;
+  background-color: @header-background-color;
+  color: @header-text-color;
+}
+
+.sign-up-page__main {
   background-color: @card-background-color;
 }

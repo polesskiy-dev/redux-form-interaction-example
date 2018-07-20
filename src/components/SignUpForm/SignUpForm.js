@@ -2,28 +2,37 @@ import React, { PureComponent } from 'react';
 import PropTypes from 'prop-types';
 import Button from 'antd/lib/button';
 import { Field, reduxForm } from 'redux-form';
-import { FormattedMessage } from 'react-intl';
 
 import './SignUpForm.less';
 
 import EInput from '../form-elements/EInput/EInput';
-import EUpload from '../form-elements/EUpload/EUpload';
 import ECountrySelect from '../form-elements/ECountrySelect/ECountrySelect';
-import EDatePicker from '../form-elements/EDatePicker/EDatePicker';
 import messages from './SignUpForm.messages';
 import { initialValues, fieldNames, SIGN_UP_FORM_NAME } from './SignUpForm.config';
-import { required, email, samePassword } from '../../validation';
+import { required, email, samePassword, has4Length } from '../../validation';
+import { signUpRequest } from '../../ducks/sign-up.duck';
 
 @reduxForm({
   form: SIGN_UP_FORM_NAME,
   initialValues
 })
 export default class SignUpForm extends PureComponent {
+
+  static propTypes = {
+    valid: PropTypes.bool,
+    submitting: PropTypes.bool,
+    dispatch: PropTypes.func
+  };
+
+  handleSubmit = () => this.props.dispatch(signUpRequest());
+
   render() {
+    const { valid, submitting } = this.props;
+
     return (
       <form className="sign-up-form__wrapper">
         <div className="row">
-          <div className="alignment-column col-sm-full col-lg-half">
+          <div className="alignment-column col-sm-full col-lg-full">
             <Field
               name={fieldNames.EMAIL}
               component={EInput}
@@ -42,25 +51,14 @@ export default class SignUpForm extends PureComponent {
               validate={[required]}
             />
             <Field
-              name={fieldNames.BIRTH_DATE}
-              component={EDatePicker}
-              props={{
-                label: messages.birthDate
-              }}
-              validate={[required]}
-            />
-            <Field
               name={fieldNames.PASSWORD}
               component={EInput}
               props={{
                 type: 'password',
                 label: messages.labelPassword
               }}
-              validate={[required]}
+              validate={[required, has4Length]}
             />
-          </div>
-          <div className="alignment-column col-sm-full col-lg-half" >
-            <EUpload />
             <Field
               name={fieldNames.CONFIRM_PASSWORD}
               component={EInput}
@@ -68,7 +66,7 @@ export default class SignUpForm extends PureComponent {
                 type: 'password',
                 label: messages.labelConfirmPassword
               }}
-              validate={[required, samePassword]}
+              validate={[required, samePassword, has4Length]}
             />
           </div>
         </div>
@@ -77,10 +75,11 @@ export default class SignUpForm extends PureComponent {
           <Button
             type="primary"
             size="large"
-            // loading
+            disabled={!valid || submitting}
+            loading={submitting}
+            onClick={this.handleSubmit}
           >
           Submit
-            {/* <FormattedMessage {...messages.submit} /> */}
           </Button>
         </footer>
       </form>

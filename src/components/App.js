@@ -2,12 +2,12 @@ import React from 'react';
 
 import './App.less';
 
-import PageHeader from './PageHeader/PageHeader';
+import AppHeader from './AppHeader/AppHeader';
 import SignUpPage from './SignUpPage/SignUpPage';
 
-const App = props => (
+const App = () => (
   <section className="app__wrapper">
-    <PageHeader />
+    <AppHeader />
     <SignUpPage />
   </section>
 );

@@ -7,12 +7,12 @@ import SignUpForm from '../SignUpForm/SignUpForm';
 import messages from './SignUpPage.messages';
 
 const SignUpPage = props => (
-  <section>
-    <header className="sign-up__header">
+  <section className="sign-up-page__wrapper">
+    <header className="sign-up-page__header">
       {/* <FormattedMessage {...messages.pleaseSignUp}/> */}
-      Please, sign up yourself
+      Please, sign up
     </header>
-    <main className="sign-up__main">
+    <main className="sign-up-page__main">
       <SignUpForm />
     </main>
   </section>

@@ -1,12 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
-import { cond } from 'lodash/fp';
 import classNames from 'classnames';
-import { FormattedMessage } from 'react-intl';
 
 import './ValidationFormField.less';
 
-import { shouldDisplayError, shouldDisplayErrorMessage } from '../../../helpers';
+import { shouldDisplayError } from '../../../helpers';
 
 const ValidatedFormField = ({
   name, label, meta, children
@@ -19,7 +17,7 @@ const ValidatedFormField = ({
       {label}
     </label>
     {children}
-    <span className={classNames('validated-form-field__error-message', { 'validated-form-field__error-message_visible': shouldDisplayErrorMessage({ ...meta }) })}>
+    <span className={classNames('validated-form-field__error-message', { 'validated-form-field__error-message_visible': shouldDisplayError({ ...meta }) })}>
       {meta.error}
     </span>
   </div>
@@ -37,13 +35,11 @@ ValidatedFormField.propTypes = {
     invalid: PropTypes.bool,
     submitting: PropTypes.bool,
   }).isRequired,
-  // forceValidationView: PropTypes.bool,
   children: PropTypes.element.isRequired,
 };
 
 ValidatedFormField.defaultProps = {
   label: '',
-  // forceValidationView: false
 };
 
 export default ValidatedFormField;
